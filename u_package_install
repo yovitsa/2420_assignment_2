@@ -1,0 +1,54 @@
+#!/bin/bash
+
+
+#Request from the user to use their sudo privilages before runnign the script
+if [[ "$EUID" -ne 0 ]]; then
+    echo "You have to run this script as a root user!"
+    exit 1
+fi
+
+#Packages file assigned to a varibles
+kakoune="/home/arch/Assignment_2/config/kak/kakrc"
+tmux="/home/arch/Assignment_2/config/tmux/tmux.conf"
+
+
+mkdir -p ~/.config/kak
+mkdir -p ~/bin
+
+ln -s /home/arch/Assignment_2/config/kak/kakrc ~/.config/kak/kakrc
+ln -s /home/arch/Assignment_2/config/tmux/tmux.conf ~/.config/tmux.conf
+
+kakoune1="~/.config/kak/kakrc"
+
+#Printing the messages for the user so it can see what packages needs to install
+
+echo "These are teh packages that you need to install:"
+echo "kakoune"
+echo "tmux"
+time
+read -p "Please Type letter A to install kakoune package or type letter B to install tmux package:i "
+
+
+while getopts "a:b:" opt; do
+  case "${opt}" in
+    a | A)
+        kakoune1=${OPTARG}
+        ;;
+      
+    b | B)
+        tmux=${OPTARG}
+       ;;
+    *)
+      echo "You have entered something else"
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -n $kakoune1 ]]; then
+  pacman -U "$kakoune1"
+fi
+
+if [[ -n $tmux ]]; then
+  pacman -U "$tmux"
+fi

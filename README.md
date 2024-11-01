@@ -1,6 +1,16 @@
-# 2420_assignment_2
+#!/bin/bash
+
+F Y N
+
+Refernces for the bash scripting 
+https://devhints.io/bash
 
 
-Refernces:
+Sftp reference 
+https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/
 
-1.SFTP https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/`
+Pacman reference Under the section 1.6
+https://wiki.archlinux.org/title/Pacman
+
+Conditon for Sudo access to run
+https://tecadmin.net/check-if-a-script-is-running-as-root-user-in-linux/
