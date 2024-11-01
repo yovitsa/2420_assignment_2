@@ -1,6 +1,5 @@
 #!/bin/bash
 
-F Y N
 
 Refernces for the bash scripting 
 https://devhints.io/bash
@@ -14,3 +13,6 @@ https://wiki.archlinux.org/title/Pacman
 
 Conditon for Sudo access to run
 https://tecadmin.net/check-if-a-script-is-running-as-root-user-in-linux/
+
+Symbolic Links
+https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/
