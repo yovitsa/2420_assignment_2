@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir ~/.confi
+mkdir ~/bin
+
+ln -s /home/arch/Assignment_2/congif/kak/kakrc ~/.config
+
+ln -s /home/arch/Assignment2/config/tmux/tmux.conf ~/.config
+
+ln -s /home/arch/Assignment_2/bin ~/bin
