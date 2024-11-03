@@ -1,10 +1,85 @@
 #!/bin/bash
 
-mkdir ~/.confi
-mkdir ~/bin
 
-ln -s /home/arch/Assignment_2/congif/kak/kakrc ~/.config
+#This command will ask the user if the user wants to create a directory, and the user needs you choose a yes or no option, if the user choose, an error message will be displayed
 
-ln -s /home/arch/Assignment2/config/tmux/tmux.conf ~/.config
+#Asking user for an input, user has to input(type) y
+read -p "Type y to create directories"
 
-ln -s /home/arch/Assignment_2/bin ~/bin
+#Using options and allowing users to create directories, user will have to type y to start the process.
+while getopts ":y:" opt; do
+  case "${opt}" in
+
+    #This option will activate the creation of the directories and it will activate the if statements for creating directories
+    y | Y)
+          echo "Creating directories"
+          ;;
+          
+  #If the user choose anything else besides y , it will revice a message that directories have to be created otherwise it can't continu, the exit 1 means that there is an error and the script will not continue.
+    :)
+        echo "Sorry but to continue you have to create directories"
+        exit 1
+        ;;
+  esac
+done
+
+#The condition belown will check if the /.config and /bin directories exist.
+#If the directories exist it will send an error message tot the user and the exit 1 it will signal the user that there is an error.
+#Otherwise if the directories do not exist it the else statement will execute and the directiores will be created.
+#The statement ends with a message for the user that directiores are created succesfully
+
+if [[ -d /.config && /bin ]]; then
+  echo "This direcorty exist alredy"
+  exit 1
+else
+  mkdir -p ~/.config
+  mkdir -p /bin
+  echo "Directories are created succesfully"
+fi
+
+
+#Asking user for an input, in order to activate the an option
+read -p "Type y to create symbolic links to your configuration files"
+
+#While loop where if a the user choosed the case y or Y (the option is case insensitive)
+#If the usre types anything else else the error message will be displayed and the user will be infromed about it.
+#The system will recive an exit code 1 which means there is an error.
+
+while getopts ":y:" opt; do
+
+#if the user input is y the first case will be excuted activating the if statement after the options
+#The user will recive a message that links are being created
+#Any other input from the user, the system will recive an exit code 1
+#User will recive a message that the links have to be created
+
+  case "${opt}" in
+    y | Y)
+      echo "Creating links"
+      ;;
+
+#If the user typed anything else besided the y, it will recive a message that symbolic links have to be created, the system will recive a message that with eixt code 1 which means there is an error. 
+    :)
+      echo "You have to create symbolic links"
+      exit 1
+      ;;
+  esac
+done
+
+
+
+#Reference: https://realtechtalk.com/bash_how_to_check_if_a_symlink_exists_as_a_file_or_directory-1843-articles
+#THis if statement will check if the symbolic links with the mentioned paths exists. 
+#if it they exists the user will recive a message that the symbolic link already exist, 
+#Otherwise the ele statement will execute and it will create a new symbolic links.
+#The user wil recive a meesage about the status and if everything went ok , the success message will be printed to the console.
+
+if [[ -L ~/.config/kak/kakrc && ~/.config/tmux/tmux.conf && ~/.bashrc ]]; then
+    echo "The symbolic links are created already"
+    exit 1
+else
+    ln -s ~/home/arch/Assignment_2/config/kak/kakrc ~/.config/kak/kakrc
+    ln -s ~/home/arch/Assignment_2/config/tmux/tmux.conf
+    ln -s ~/home/basrc /.bashrc
+    echo "Symbolic links succesfully created"
+fi
+
