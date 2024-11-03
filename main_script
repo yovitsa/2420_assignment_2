@@ -1,6 +1,11 @@
 #!/bin/bash
 
+#This command will request from user to run the main script as a root user, that means the user has to use the sudo command in order to run the script. As we did not looked up this command in class , I have found it online, here is the link for your reference:
+
 if [[ "$EUID" -ne 0 ]]; then
     echo "You have to run this script as a root user!"
     exit 1
 fi
+
+#./u_package_install
+./links
