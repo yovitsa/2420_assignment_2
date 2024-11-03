@@ -11,33 +11,36 @@ fi
 kakoune="/home/arch/Assignment_2/config/kak/kakrc"
 tmux="/home/arch/Assignment_2/config/tmux/tmux.conf"
 
-
-mkdir -p ~/.config/kak
+#Create the .config and bin directories
+mkdir -p ~/.config
 mkdir -p ~/bin
 
-ln -s /home/arch/Assignment_2/config/kak/kakrc ~/.config/kak/kakrc
-ln -s /home/arch/Assignment_2/config/tmux/tmux.conf ~/.config/tmux.conf
+#creating symbolic links
+ln -s "/home/arch/Assignment_2/config/kak/kakrc" "~/.config/kak"
+#ln -s /home/arch/Assignment_2/config/tmux/tmux.conf ~/.config/tmux.conf
 
-kakoune1="~/.config/kak/kakrc"
+kakoune1="/.config/kakrc"
 
 #Printing the messages for the user so it can see what packages needs to install
 
 echo "These are teh packages that you need to install:"
 echo "kakoune"
 echo "tmux"
-time
-read -p "Please Type letter A to install kakoune package or type letter B to install tmux package:i "
+
+read -p "Please Type letter A to install kakoune package or type letter B to install tmux package: "
 
 
-while getopts "a:b:" opt; do
+while getopts "a:" opt; do
   case "${opt}" in
     a | A)
+        echo "package is installing..."
         kakoune1=${OPTARG}
+        exit 0
         ;;
       
-    b | B)
-        tmux=${OPTARG}
-       ;;
+  #  b | B)
+   #     tmux=${OPTARG}
+    #   ;;
     *)
       echo "You have entered something else"
       exit 1
@@ -46,9 +49,10 @@ while getopts "a:b:" opt; do
 done
 
 if [[ -n $kakoune1 ]]; then
-  pacman -U "$kakoune1"
+  pacman -S 
+  echo "package sucessfully installed"
 fi
 
-if [[ -n $tmux ]]; then
-  pacman -U "$tmux"
-fi
+#if [[ -n $tmux ]]; then
+ # pacman -U "$tmux"
+#fi
