@@ -53,8 +53,7 @@ while getopts ":k:t:" opt; do
 	   tmux_package=$(grep -i "tmux" "$packages")
          
          #Using if statement to check if the variable is not empty, if that is true the installation will start
-	  if [
-		  [ -n "$tmux_package" ]]; then
+	  if [[ -n "$tmux_package" ]]; then
 	   
 	   #Sending message to the user about the current status
 	   echo "Installing tmux package"
