@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+
+#The packages are asved in a txt file, that txt file is stored in a variable.
+#This way packages are easier to handle for installation and error handling
+
+packages="list_of_packages.txt"
+
+
+#Reference:https://linuxize.com/post/bash-check-if-file-exists/#check-if-file-does-not-exist
+#If statement will check if the file exist
+if [[ ! -f "$packages" ]]; then
+	echo "$packages does not exist"
+	exit 1
+fi   
+
+
+
+#Three echo statements gets printed to user, providing info about which packages the user needs to install
+echo "You need to install the following packages"
+echo "1.kakrc - input k to install kakrc"
+echo "2.tmux - input t to install tmux"
+
+#Using options so user can initiate the installation with the selected option
+#
+while getopts ":k:t:" opt; do
+     case "${opt}" in
+	k)
+	  kakrc_package=$(grep -i "kakrc" "$packages" )
+	  if [[ -n "$kakrc_package" ]]; then
+	    echo "Installing kakrkc
+
+
