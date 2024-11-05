@@ -1,3 +1,74 @@
 #!/bin/bash
 
+#Variables for options
+#These options are needed, so we can control the user creation
+
+username=""
+
+password=""
+
+shell="/bin/bash"
+
+home_dir=""
+
+grou
+#Options created so we can parse the options to the command line
+
+while getopts ":u:p:s:h:" opt; do
+     case "${opt}" in
+	#The first case, this case handles the username option
+	u)
+	  username=${OPTARG}
+	  ;;
+	#The second case handles the user password
+	p)
+	  password=${OPTARG}
+	  ;;
+	#This case handles the shell, in this script the default shell is atuomatiacally assigned to variables, so it will always default to it
+  	s)
+	  shell=${OPTARG}
+	  ;;
+	#This case hadnles a creation of the hoem directory
+  	h)
+	  home_dir=${OPTARG}
+	  ;;
+	#This case handles every ohter case, it will inform a user that there has been an error. 
+	#The system will be informed about the error, as the exit code is 1, that means error.
+	*)
+	  echo "That is not a valid option $OPTARG"
+	  exit 1
+	  ;;
+     case
+done
+
+if [[ -z $username ]]; then
+    read -p "Enter your username" username
+else
+   [[ hohow 
+fi
+
+if [[ -z $password ]]; then
+
+     read -p "Create a new user passwori " password
+     passwd $username
+     echo "Password succesfully created"
+fi
+
+if [[ -z $shell ]]; then
+    read -p "Press enter to create tou create your shell" shell
+fi
+
+if [[ -z $home_dir ]]; then
+    home_dir="/home/$username"
+    cp -r /etc/skel/. home_dir
+fi
+
+
+
+
+
+
+
+
+
 
