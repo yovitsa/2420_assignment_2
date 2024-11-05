@@ -41,12 +41,14 @@ while getopts ":u:p:s:h:" opt; do
      case
 done
 
-if [[ -z $username ]]; then
-    read -p "Enter your username" username
-else
-   [[ hohow 
+#This if statement checks if the string is empty.
+#Then prompots the user to enter a new username
+if[[ -z $username ]]; then
+    read -p "Enter your username" username 
 fi
 
+#This if statement checks if the password is empty, then asks user to create a new password. 
+#Using passwd utility the user will create a new password for the new user
 if [[ -z $password ]]; then
 
      read -p "Create a new user passwori " password
@@ -54,14 +56,22 @@ if [[ -z $password ]]; then
      echo "Password succesfully created"
 fi
 
+#This statement creates a new shell.
+#In this script the shell is set to default #!/bin/bash
 if [[ -z $shell ]]; then
     read -p "Press enter to create tou create your shell" shell
 fi
 
+#This if statement checks if the hom_dir variable is empty
+#Then creates a new home directory
+#After that the content of the etc/skel directory will be copied to the new home directory
+#/. will ensure to copied all the files, including hidden files
 if [[ -z $home_dir ]]; then
     home_dir="/home/$username"
     cp -r /etc/skel/. home_dir
 fi
+
+#Creating additional groups
 
 
 
