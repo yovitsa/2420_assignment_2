@@ -2,82 +2,39 @@
 
 
 
-#The packages are asved in a txt file, that txt file is stored in a variable.
+#The packages are stored in a variable.
 #This way packages are easier to handle for installation and error handling
 
-packages="list_of_packages.txt"
+packages=("kakoune" "tmux")
+
+#Prinitng all the packages that need ot be installed
+echo "These packages will be installed "${packages[@]}""
 
 
-#Reference:https://linuxize.com/post/bash-check-if-file-exists/#check-if-file-does-not-exist
-#If statement will check if the file exist
-if [[ ! -f "$packages" ]]; then
-	echo "$packages does not exist"
-	exit 1
-fi   
+#Create a function in order to handle the installation packagesI I 
+package_installation() {
+
+    #Using the for loop to loop through the packages varibale
+    for package in "{$packages[@]}"; do 
+
+	#This if statement will check if the any of the packages is installed already
+	if ! pacman -Q "$package"; then
+		#Informing the user what is the current status
+		echo "You packages are getting installed"
+		#installing the packages using pacman
+		pacman -S "$package"
+        
+	#This else statement will get executed if the packages have been already installed
+	#The error code will be send to the system as well exit code 1
+	else
+	      echo "THe packages have been installed already"
+	      exit 1
+	fi
+    done
+
+}
 
 
-#Three echo statements gets printed to user, providing info about which packages the user needs to install
-echo "You need to install the following packages"
-echo "1.kakrc - input k to install kakrc"
-echo "2.tmux - input t to install tmux"
-
-#Using options so user can initiate the installation with the selected option
-#providing options for the user
-while getopts ":k:t:" opt; do
-     case "${opt}" in
-	
-	#This option will install the kakrc package
-	k)
-	
-	#Create a varible kakrc_package, using grep to find the path with kakrc word in it, in the list_of_packages.txt.
-	  kakrc_package=$(grep -i "kakrc" "$packages" )
-	
-	#Using if statement to check if the variable is not empty, if that is true the installation will start
-	  if [[ -n "$kakrc_package" ]]; then
-           #Sendong message to the user abuot the current status
-	    echo "Installing kakrkc package"
-	   
-	   #Installing the kakrc package
-	    pacman -S "$kakrc_package"
-	 
-	 #If the package is not found or doesn't exits, an else statemnt will be executed
-	  else
-	    echo "Package is not found or doesn't exist"
-	  fi
-	  ;;
-	
-	  #This option will install the tmux package
-         t)
-
-	 #Created a variable tmux_package, used the greop command to find the path with the tmux  word in it, in th efile list_of_packages.txt
-	   tmux_package=$(grep -i "tmux" "$packages")
-         
-         #Using if statement to check if the variable is not empty, if that is true the installation will start
-	  if [[ -n "$tmux_package" ]]; then
-	   
-	   #Sending message to the user about the current status
-	   echo "Installing tmux package"
-
-          #Installing the tmux package
-	   pacman -S "$tmux_package"
-
-	  #If the package is not found or doesn't exist , an else statement will be executed
-  	 else
-            echo "Package is not found or doesn't exist"
-	  fi
-	  ;;
-
-	  #This option will all the other cases, if the user input anything else besides k and t.
-	  #This option will inform the user that there is an error and the that input should be k or t
-	  #Also it will send the exit code 1 to the system, that means there is an error.
-
-	  *)
-	    echo "You input has to be k and/or t, in order to install the packages"
-	    exit 1
-	    ;;
-	     
-	esac
-done
 
 
 
