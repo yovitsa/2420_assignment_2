@@ -11,7 +11,7 @@ shell="/bin/bash"
 
 home_dir=""
 
-grou
+groups=""
 #Options created so we can parse the options to the command line
 
 while getopts ":u:p:s:h:" opt; do
@@ -32,18 +32,20 @@ while getopts ":u:p:s:h:" opt; do
   	h)
 	  home_dir=${OPTARG}
 	  ;;
+	#This case handles additional groups  
+	g)
 	#This case handles every ohter case, it will inform a user that there has been an error. 
 	#The system will be informed about the error, as the exit code is 1, that means error.
 	*)
 	  echo "That is not a valid option $OPTARG"
 	  exit 1
 	  ;;
-     case
+     esac
 done
 
 #This if statement checks if the string is empty.
 #Then prompots the user to enter a new username
-if[[ -z $username ]]; then
+if [[ -z $username ]]; then
     read -p "Enter your username" username 
 fi
 
@@ -51,7 +53,7 @@ fi
 #Using passwd utility the user will create a new password for the new user
 if [[ -z $password ]]; then
 
-     read -p "Create a new user passwori " password
+     read -p "Create a new user password: " password
      passwd $username
      echo "Password succesfully created"
 fi
@@ -59,7 +61,7 @@ fi
 #This statement creates a new shell.
 #In this script the shell is set to default #!/bin/bash
 if [[ -z $shell ]]; then
-    read -p "Press enter to create tou create your shell" shell
+    read -p "Press enter to create to create your shell" shell
 fi
 
 #This if statement checks if the hom_dir variable is empty
@@ -67,11 +69,30 @@ fi
 #After that the content of the etc/skel directory will be copied to the new home directory
 #/. will ensure to copied all the files, including hidden files
 if [[ -z $home_dir ]]; then
+    
+    #Informing the user about the current status
+    echo "Creating home directory $home_dir"
+    #Creating a home directory
+    mkdir -p "$home_dir"
     home_dir="/home/$username"
+    
+    #Coping the /etc/skel to our newly created home directory
     cp -r /etc/skel/. home_dir
+    #Changong ownership on the home directory
+    chown "$username" "$home_dir"
+
 fi
 
-#Creating additional groups
+#Creating primary group for the newly created user
+primary_group=$username
+
+if [[ -z $groups ]]; then
+    read -p "Type the additional groups for the user" groups
+fi
+
+
+
+
 
 
 
