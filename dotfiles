@@ -22,11 +22,11 @@ fi
 #Otherwise the ele statement will execute and it will create a new symbolic links.
 #The user wil recive a meesage about the status and if everything went ok , the success message will be printed to the console.
 
-if [[ -L ~/.config/kak/kakrc && -L ~/.config/tmux/tmux.conf && -L ~/.bashrc && -L ~/bin ]]; then
+if [[ -L ~/.config/kak && -L ~/.config/tmux && -L ~/.bashrc && -L ~/bin ]]; then
     echo "The symbolic links are created already"
 else
-    ln -s ~/home/arch/Assignment_2/config/kak/kakrc ~/.config/kak/kakrc
-    ln -s ~/home/arch/Assignment_2/config/tmux/tmux.conf ~/.config/tmux/tmux.conf
+    ln -s ~/home/arch/Assignment_2/config/kak ~/.config/kak
+    ln -s ~/home/arch/Assignment_2/config/tmux/tmux.conf ~/.config/tmux
     ln -s ~/home/basrc /.bashrc
     ln -s ~/home/arch/Assignment_2/bin ~/bin
     echo "Symbolic links succesfully created"
