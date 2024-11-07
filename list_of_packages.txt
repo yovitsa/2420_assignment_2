@@ -1,5 +1,0 @@
-
-
-~/Assignment_2/config/kak/kakrc
-~/Assignment_2/config/tmux/tmux.conf
-

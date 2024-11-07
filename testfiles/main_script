@@ -25,7 +25,6 @@ chmod +x "$DOTFILES"
 install_packages() {
      echo "Instalation started" 
      "$PACKAGES"
-
      #If the exit code is 0, then the instalation was succefull
      if [[ $? -eq 0 ]]; then
 	echo "Packages installed successfully"
@@ -50,7 +49,7 @@ dotfiles() {
 	echo "Symbolic links created"
 
      #Otherwise if the exit code is diffrent than 0
-     #The else statement will be executed, and it will send an error message to the user
+     #The esle statement will be executed, and it will send a message to the user
      else
 	echo "Symbolic link creation failed" >&2
 	exit 1
@@ -58,10 +57,10 @@ dotfiles() {
 
 }
 
-#Using getopts to proivde user options
+#Using getopts to orivde user options
 #The user can install only packages or only symbolic links
 #It can do both, by choosing a third option
-#If user does not choose any of the options, 
+#If user does nto choose any of the options, 
 #It will be prompt again to choose one of the 3 options
 
 while getopts "psa" opt; do
@@ -76,7 +75,7 @@ while getopts "psa" opt; do
 	    s)
               dotfiles
 	      ;;
-	#Option a will run both scripts if choosen
+	#Option b will run both scripts if choosen
 	#Both function dotfiles and install_packages will be called
 	    a)
 	      install_packages

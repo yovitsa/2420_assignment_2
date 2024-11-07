@@ -18,8 +18,8 @@ fi
 
 #Reference: https://realtechtalk.com/bash_how_to_check_if_a_symlink_exists_as_a_file_or_directory-1843-articles
 #This if statement will check if the symbolic links with the mentioned paths exists. 
-#if they exists the user will recive a message that the symbolic link already exist, 
-#Otherwise the else statement will execute and it will create a new symbolic links.
+#if it they exists the user will recive a message that the symbolic link already exist, 
+#Otherwise the ele statement will execute and it will create a new symbolic links.
 #The user wil recive a meesage about the status and if everything went ok , the success message will be printed to the console.
 
 if [[ -L ~/.config/kak && -L ~/.config/tmux && -L ~/.bashrc && -L ~/bin ]]; then

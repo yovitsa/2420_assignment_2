@@ -6,8 +6,8 @@ if [[ "$EUID" -ne 0 ]]; then
      echo "Please run this script as root user"
      exit 1
 fi
-
 #Function to display the usege of options
+
 usage() {
 
     echo "Usage: $0 -u username -p password -s shell -h home_dir -g groups"
@@ -34,8 +34,8 @@ shell="/bin/bash"
 home_dir=""
 
 groups=""
-
 #Options created so we can parse the options to the command line
+
 while getopts ":u:p:s:h:g" opt; do
      case "${opt}" in
 	#The first case, this case handles the username option
@@ -47,11 +47,11 @@ while getopts ":u:p:s:h:g" opt; do
 	  password=${OPTARG}
 	  ;;
 	#This case handles the shell, in this script the default shell is atuomatiacally assigned to variables, so it will always default to it
-  s)
+  	s)
 	  shell=${OPTARG}
 	  ;;
 	#This case hadnles a creation of the hoem directory
-  h)
+  	h)
 	  home_dir=${OPTARG}
 	  ;;
 	#This case handles additional groups  
@@ -68,9 +68,9 @@ while getopts ":u:p:s:h:g" opt; do
 done
 
 #This if statement checks if the string is empty.
-#Then prompts the user to enter a new username
+#Then prompots the user to enter a new username
 if [[ -z $username ]]; then
-    read -p "Please enter a username" username
+    read -p "Please neter a username" username
 fi
 
 #This if statement checks if the password is empty, then asks user to create a new password. 
@@ -80,21 +80,22 @@ if [[ -z $password ]]; then
      
 fi
 
-#This if statement checks if the home_dir variable is empty
+#This if statement checks if the hom_dir variable is empty
 #And it will set default home idrectory
 if [[ -z $home_dir ]]; then
     home_dir="/home/$username"	
 fi
 
+if [[ ! -d $home_dir ]]; then
 #This if statement creates a new home directory
 #After that the content of the etc/skel directory will be copied to the new home directory
 #/. will ensure to copied all the files, including hidden files
-if [[ ! -d $home_dir ]]; then
 
     #Informing the user about the current status
     echo "Creating home directory $home_dir"
     #Creating a home directory
     mkdir -p "$home_dir"
+    
     #Coping the /etc/skel to our newly created home directory
     cp -r /etc/skel/. home_dir
     
@@ -110,14 +111,14 @@ fi
 gid=$(($(tail -n 1 /etc/group | cut -d: -f3) + 1))
 echo "$username:x:$gid:" | tee -a /etc/group 
 
-#Creating an user id and primary group id
+#Creating a user id and group id
 uid=$(($(tail -n 1 /etc/passwd | cut -d: -f3) + 1))
 gid=$uid
 
-#Adding user a user entry to the etc/passwd file
+#Adding user to the etc/passwd directory
 echo "$username:x:$uid:$gid:$username:$home_dir:$shell" | tee -a /etc/passwd 
 
-#Setting up a password fot hte new user
+#Setting up teh user password
 echo "$password" | passwd --stdin "$username"  
 
 #If no additioanl groups are provided, the user will be prompt for it
@@ -135,14 +136,23 @@ if [[ -n $groups ]]; then
      #looping through the list of groups 
      for group in "${list_of_groups[@]}"; do
 	
-     #This if statement will check if the group exist in /etc/group
-     #If the group exist the user will be added to the group
+     #This if statement will check if the group exist in /etc/group dir
+     #If the user exist the user will be added to the group
      if grep -q "^$group:" /etc/group; then
 	
 	      sed -i "/^group:/ s/$/,$username/" /etc/group
-	
+
      #If the group does not exist the else statement will be executed
-     #It will find the highest gid and increment by 1 for the new group
+     #The group will be created 
+     #And the new user will be added
+     
+     #New group created
+     #Tails checks the last line in the /etc/group directory 
+     #In order to get the higest GID
+     #one extra group gets created and, GID gets incremented by 1
+     # New GID gets appended to /etc/group
+	
+     
      else 
      	
 	      new_gif=$(($(tail -n 1 /etc/group | cut -d: -f3) + 1))
@@ -152,7 +162,6 @@ if [[ -n $groups ]]; then
 
 fi
 
-#Informing user that the process is finished
 echo "User $username successfully created"
 
 

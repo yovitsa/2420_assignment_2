@@ -5,17 +5,17 @@
 
 packages=("kakoune" "tmux")
 
-#Prinitng all the packages that need to be installed
+#Prinitng all the packages that need ot be installed
 echo "These packages will be installed: ${packages[@]}"
 
 
-#Create a function in order to handle the installation packages 
+#Create a function in order to handle the installation packagesI I 
 package_installation() {
 
     #Using the for loop to loop through the packages varibale
     for package in  "${packages[@]}"; do 
 
-	#This if statement will check if the any of the packages are installed already.
+	#This if statement will check if the any of the packages is installed already.
 	if ! pacman -Q "$package"; then
 		#Informing the user what is the current status
 		echo "You packages are getting installed"
