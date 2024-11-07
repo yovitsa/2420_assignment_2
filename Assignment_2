@@ -36,7 +36,7 @@ home_dir=""
 groups=""
 
 #Options created so we can parse the options to the command line
-while getopts ":u:p:s:h:g:" opt; do
+while getopts ":u:p:s:h:g" opt; do
      case "${opt}" in
 	#The first case, this case handles the username option
 	u)
@@ -68,13 +68,13 @@ while getopts ":u:p:s:h:g:" opt; do
 done
 
 #This if statement checks if the string is empty.
-#Usage function will be called, and it will show possible options for the user
+#Then prompts the user to enter a new username
 if [[ -z $username ]]; then
     usage
 fi
 
-#This if statement checks if the password is empty
-#Usage function will be called, and it will show possible options for the user
+#This if statement checks if the password is empty, then asks user to create a new password. 
+#Using passwd utility the user will create a new password for the new user
 if [[ -z $password ]]; then
     usage 
      
@@ -117,9 +117,13 @@ gid=$uid
 #Adding user a user entry to the etc/passwd file
 echo "$username:x:$uid:$gid:$username:$home_dir:$shell" | tee -a /etc/passwd 
 
-#Setting up a password fot the new user
+#Setting up a password fot hte new user
 echo "$password" | passwd --stdin "$username"  
 
+#If no additioanl groups are provided, the user will be prompt for it
+#if [[ -z $groups ]]; then
+ #   read -p "Add user to more groups" groups
+#fi
 
 #Additional groups
 if [[ -n $groups ]]; then
@@ -141,7 +145,7 @@ if [[ -n $groups ]]; then
      #It will find the highest gid and increment by 1 for the new group
      else 
      	
-	      new_gid=$(( $( tail -n 1 /etc/group | cut -d: -f3 ) + 1 ))
+	      new_gid=$(($( tail -n 1 /etc/group | cut -d: -f3 ) + 1 ))
 	      echo "$group:x:$new_gid:$username" | tee -a /etc/group 
      fi 
  done
