@@ -70,13 +70,13 @@ done
 #This if statement checks if the string is empty.
 #Then prompts the user to enter a new username
 if [[ -z $username ]]; then
-    read -p "Please enter a username" username
+    usage
 fi
 
 #This if statement checks if the password is empty, then asks user to create a new password. 
 #Using passwd utility the user will create a new password for the new user
 if [[ -z $password ]]; then
-    read -sp "Please enter your password" password 
+    usage 
      
 fi
 
@@ -145,7 +145,7 @@ if [[ -n $groups ]]; then
      #It will find the highest gid and increment by 1 for the new group
      else 
      	
-	      new_gid=$(($(tail -n 1 /etc/group | cut -d: -f3) + 1))
+	      new_gid=$(($( tail -n 1 /etc/group | cut -d: -f3 ) + 1 ))
 	      echo "$group:x:$new_gid:$username" | tee -a /etc/group 
      fi 
  done
