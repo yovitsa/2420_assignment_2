@@ -1,7 +1,10 @@
 # ACIT 2420 Assignment 2
 # Project 1 
 
-Project 1 includes 3 scripts: "dotfiles", "install_packages" and "main"
+Project 1 includes 3 scripts: 
+  1."dotfiles" 
+  2."install_packages"
+  3."main"
 
 ## Files Overview
 
