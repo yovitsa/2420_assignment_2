@@ -1,5 +1,22 @@
 #!/bin/bash
 
+#Function to display the usege of options
+
+usage() {
+
+    echo "Usage: $0 -u username -p password -s shell -h home_dir -g groups"
+    echo " -u username Type username for th enew user"
+    echo " -p password: THe password for the new user"
+    echo " -s shell: The login shell for the new user"
+    echo " -h home_dir: Home directory for the new user"
+    echo " -g groups : Groups for the new user"
+    exit 1
+
+
+}
+
+
+
 #Variables for options
 #These options are needed, so we can control the user creation
 
@@ -35,10 +52,10 @@ while getopts ":u:p:s:h:" opt; do
 	#This case handles additional groups  
 	g)
 	#This case handles every ohter case, it will inform a user that there has been an error. 
-	#The system will be informed about the error, as the exit code is 1, that means error.
+	#Usage funciton is called, and it will display all the possible options for the user
 	*)
 	  echo "That is not a valid option $OPTARG"
-	  exit 1
+	  usage
 	  ;;
      esac
 done
@@ -90,6 +107,29 @@ if [[ -z $groups ]]; then
     read -p "Type the additional groups for the user" groups
 fi
 
+#Additional groups
+if [[ -n $groups ]]; then
+     
+     #This will add groups to the list of groups
+     #IFS will seprate them by commas
+     IFS="," read -r -a list_of_groups <<< "$groups"
+     
+     #looping through the list of groups 
+     for group in "${list_of_groups[@]}"; do
+	
+     #This if statement will check if the group exist in /etc/group dir
+     #If the user exist the user will be added to the group
+     if grep -q "^group:" /etc/group; then
+	
+	sed -i "/^group:/ s/$/,username/" /etc/group
+
+     #If the group does not exist the else statement will be executed
+     #The group will be created 
+     #And the new user will be added
+     else
+	#New gid created
+	
+	new_gid+$(($(tail -n  /etc/group | cut -d: -f3) +1
 
 
 

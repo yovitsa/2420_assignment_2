@@ -37,3 +37,6 @@ https://tecadmin.net/check-if-a-script-is-running-as-root-user-in-linux/
 
 Symbolic Links
 https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/
+
+Cut command
+https://linuxize.com/post/linux-cut-command/
