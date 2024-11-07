@@ -1,7 +1,10 @@
 # ACIT 2420 Assignment 2
 # Project 1 
 
-Project 1 includes 3 scripts: "dotfiles", "install_packages" and "main"
+Project 1 includes 3 scripts: 
+  1. dotfiles
+  2. install_packages
+  3. main
 
 ## Files Overview
 
@@ -71,7 +74,6 @@ Script ust be run with root privilages.
 3. **New User Creation**  
    - Accepts options to specify the following properties for the new user:
      - **Username** (`-u`): Required. Specifies the username of the new account.
-     - **Password** (`-p`): Required. Sets the password for the account.
      - **Login Shell** (`-s`): Optional. Defines the login shell (defaults to `/bin/bash` if not provided).
      - **Home Directory** (`-h`): Optional. Specifies a custom home directory path.
      - **Groups** (`-g`): Optional. Adds the new user to one or more groups.
@@ -80,7 +82,8 @@ Script ust be run with root privilages.
 4. **Error Handling**  
    - Checks if each option is provided and displays usage information if any required option is missing.
    - Sends a message to the user is successful creation or if any errors have been encountered.
-
+5. **Password creation**
+   - The scripts autoamtilcaly prompts a user to create a password.
 ## Usage
 
 To run the script, use the following syntax:
