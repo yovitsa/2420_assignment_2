@@ -146,5 +146,4 @@ echo "User $username successfully created"
 
 #Creating a new password for the user
 passwd $username
-echo "Password created successfully"
 
