@@ -2,9 +2,9 @@
 # Project 1 
 
 Project 1 includes 3 scripts: 
-  1."dotfiles" 
-  2."install_packages"
-  3."main"
+  1. "dotfiles" 
+  2. "install_packages"
+  3. "main"
 
 ## Files Overview
 
