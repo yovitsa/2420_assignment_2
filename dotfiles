@@ -5,11 +5,11 @@
 #Otherwise if the directories do not exist it the else statement will execute and the directiores will be created.
 #The statement ends with a message for the user that directiores are created succesfully
 
-if [[ -d ~/.config && -d ~/bin ]]; then
+if [[ -d ~/.config/kak && -d ~/bin/tmux ]]; then
   echo "This direcorty exist alredy"
-  exit 1
 else
-  mkdir -p ~/.config
+  mkdir -p ~/.config/kak
+  mkdir -p ~/.config/tmux
   mkdir -p ~/bin
   echo "Directories are created succesfully"
 
@@ -22,13 +22,13 @@ fi
 #Otherwise the ele statement will execute and it will create a new symbolic links.
 #The user wil recive a meesage about the status and if everything went ok , the success message will be printed to the console.
 
-if [[ -L ~/.config/kak/kakrc && -L ~/.config/tmux/tmux.conf && -L ~/.bashrc ]]; then
+if [[ -L ~/.config/kak/kakrc && -L ~/.config/tmux/tmux.conf && -L ~/.bashrc && -L ~/bin ]]; then
     echo "The symbolic links are created already"
-    exit 1
 else
     ln -s ~/home/arch/Assignment_2/config/kak/kakrc ~/.config/kak/kakrc
     ln -s ~/home/arch/Assignment_2/config/tmux/tmux.conf ~/.config/tmux/tmux.conf
     ln -s ~/home/basrc /.bashrc
+    ln -s ~/home/arch/Assignment_2/bin ~/bin
     echo "Symbolic links succesfully created"
 fi
 

@@ -1,34 +1,31 @@
 #!/bin/bash
 
-
-
 #The packages are stored in a variable.
 #This way packages are easier to handle for installation and error handling
 
 packages=("kakoune" "tmux")
 
 #Prinitng all the packages that need ot be installed
-echo "These packages will be installed "${packages[@]}""
+echo "These packages will be installed: ${packages[@]}"
 
 
 #Create a function in order to handle the installation packagesI I 
 package_installation() {
 
     #Using the for loop to loop through the packages varibale
-    for package in "{$packages[@]}"; do 
+    for package in  "${packages[@]}"; do 
 
-	#This if statement will check if the any of the packages is installed already
+	#This if statement will check if the any of the packages is installed already.
 	if ! pacman -Q "$package"; then
 		#Informing the user what is the current status
 		echo "You packages are getting installed"
 		#installing the packages using pacman
-		pacman -S "$package"
+		pacman -S $package
         
 	#This else statement will get executed if the packages have been already installed
 	#The error code will be send to the system as well exit code 1
 	else
-	      echo "THe packages have been installed already"
-	      exit 1
+	      echo "The packages have been installed already"
 	fi
     done
 
@@ -36,5 +33,5 @@ package_installation() {
 
 
 
-
+package_installation
 
