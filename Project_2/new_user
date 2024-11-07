@@ -17,7 +17,6 @@ usage() {
     echo " -g groups : Choose groups for the new user"
     exit 1
 
-
 }
 
 
@@ -61,6 +60,7 @@ done
 
 #This if statement checks if the string is empty.
 #Usage function will be called, and it will show possible options for the user
+
 if [[ -z $username ]]; then
     usage
 fi
@@ -131,7 +131,7 @@ if [[ -n $groups ]]; then
      else 
      	
 	new_gid=$(( $( tail -n 1 /etc/group | cut -d: -f3 ) + 1 ))
-	      
+	#writing to the /etc/group file      
 	cat >> /etc/group <<- END
 	    $group:x:$new_gid:$username
 	END
@@ -141,7 +141,6 @@ if [[ -n $groups ]]; then
 fi
 
 #Informing user that the process is finished
-
 echo "User $username successfully created"
 
 
