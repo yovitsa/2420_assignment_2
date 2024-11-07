@@ -93,7 +93,7 @@ sudo ./new_user -u username -p password -s shell -h home_dir -g groups
 
 - **Bash scripting**: [Bash Cheat Sheet](https://devhints.io/bash)
 - **SFTP command**: [Linux SFTP Command](https://linuxize.com/post/how-to-use-linux-sftp-command-to-transfer-files/)
-- **Pacman package manager**: [Arch Linux Pacman Guide (Section 1.6)](https://wiki.archlinux.org/title/Pacman)
+- **Pacman package manager**: [Arch Linux Pacman Guide](https://wiki.archlinux.org/title/Pacman)
 - **Condition for Sudo Access**: [Check if Script is Running as Root](https://tecadmin.net/check-if-a-script-is-running-as-root-user-in-linux/)
 - **Symbolic Links**: [Creating Symbolic Links with `ln`](https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/)
 - **Cut command**: [Linux Cut Command](https://linuxize.com/post/linux-cut-command/)
