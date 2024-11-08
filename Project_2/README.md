@@ -30,7 +30,7 @@ Script ust be run with root privilages.
    - Checks if each option is provided and displays usage information if any required option is missing.
    - Sends a message to the user is successful creation or if any errors have been encountered.
 5. **Password creation**
-   - The scripts autoamtilcaly prompts a user to create a password.
+   - The scripts automaticaly prompts a user to create a password.
 ## Usage
 
 To run the script, use the following syntax:
