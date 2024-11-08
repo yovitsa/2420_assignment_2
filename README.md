@@ -10,7 +10,7 @@ Assignment 2 includes:
 ## Directory Overview
 #
 
-   ** Project 1 **  
+   **Project 1**  
 
    Files in Project One:
    1. dotfiles
@@ -21,7 +21,7 @@ Assignment 2 includes:
 In Project 1 you can install packages and create symbolic links, for more see Project 1 directory documentation
 # 
 
-1. ** Project 2 **  
+   **Project 2**  
 
    Files in Project 2:
    1. new_user
