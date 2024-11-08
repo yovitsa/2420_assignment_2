@@ -1,10 +1,12 @@
 # ACIT 2420 Assignment 2
-# Project 1 
+# Project 2
 
-Project 1 includes 3 scripts: 
+Project 1 includes:
+
   1. dotfiles
   2. install_packages
   3. main
+  4. README.md
 
 ## Files Overview
 
@@ -52,44 +54,6 @@ Project 1 includes 3 scripts:
    sudo ./main_script
    ```
 
-#
-# Project 2
-
-# New User Creation Script
-
-This script (`new_user`) is a Bash script intended to help system administrators create a new user on a Linux system with customizable options for username, password, shell, home directory, and groups. The script must be run with root privileges.
-
-The `new_user` script function is to create a new user. The script provides options for username, password, shell, home idrectpry and groups.
-Script ust be run with root privilages.
-
-## Functionality
-
-1. **Root Check**  
-   - If the script is not run as root, it displays an error message prompting the user to run it with `sudo` and exits.
-
-2. **Usage function**  
-   - `usage` function that displays information on the required and optional arguments.
-   - Displays the usage information if the required arguments are not supplied.
-
-3. **New User Creation**  
-   - Accepts options to specify the following properties for the new user:
-     - **Username** (`-u`): Required. Specifies the username of the new account.
-     - **Login Shell** (`-s`): Optional. Defines the login shell (defaults to `/bin/bash` if not provided).
-     - **Home Directory** (`-h`): Optional. Specifies a custom home directory path.
-     - **Groups** (`-g`): Optional. Adds the new user to one or more groups.
-   - Creates the user with these specified options.
-
-4. **Error Handling**  
-   - Checks if each option is provided and displays usage information if any required option is missing.
-   - Sends a message to the user is successful creation or if any errors have been encountered.
-5. **Password creation**
-   - The scripts autoamtilcaly prompts a user to create a password.
-## Usage
-
-To run the script, use the following syntax:
-```bash
-sudo ./new_user -u username -p password -s shell -h home_dir -g groups
-```
 #
 ## References
 
