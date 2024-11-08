@@ -120,21 +120,21 @@ if [[ -n $groups ]]; then
     #looping through the list of groups 
     for group in "${list_of_groups[@]}"; do
 	
-     #This if statement will check if the group exist in /etc/group
-     #If the group exist the user will be added to the group
-     if  grep -q "^$group:" /etc/group; then
-         sed -i "/^$group:/ s/$/,$username/" /etc/group
+    	 #This if statement will check if the group exist in /etc/group
+    	 #If the group exist the user will be added to the group
+    	if  grep -q "^$group:" /etc/group; then
+         	sed -i "/^$group:/ s/$/,$username/" /etc/group
 	
-     #If the group does not exist the else statement will be executed
-     #It will find the highest gid and increment by 1 for the new group
-     else      	
-	new_gid=$(( $( tail -n 1 /etc/group | cut -d: -f3 ) + 1 ))
-	
-	#writing to the /etc/group file      
-	cat >> /etc/group <<- END
-	    $group:x:$new_gid:$username
-	END
-     fi 
+    	 #If the group does not exist the else statement will be executed
+    	 #It will find the highest gid and increment by 1 for the new group
+    	else      	
+		new_gid=$(( $( tail -n 1 /etc/group | cut -d: -f3 ) + 1 ))
+
+		#writing to the /etc/group file      
+		cat >> /etc/group <<- END
+	   	 $group:x:$new_gid:$username
+		END
+   	fi 
     done
 
 fi
