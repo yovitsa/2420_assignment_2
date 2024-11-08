@@ -8,7 +8,6 @@ Assignment 2 includes:
   3. README.md
 
 ## Directory Overview
-#
 
    **Project 1**  
 
