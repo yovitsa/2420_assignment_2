@@ -100,4 +100,4 @@ sudo ./new_user -u username -p password -s shell -h home_dir -g groups
 - **Condition for Sudo Access**: [Check if Script is Running as Root](https://tecadmin.net/check-if-a-script-is-running-as-root-user-in-linux/)
 - **Symbolic Links**: [Creating Symbolic Links with `ln`](https://linuxize.com/post/how-to-create-symbolic-links-in-linux-using-the-ln-command/)
 - **Cut command**: [Linux Cut Command](https://linuxize.com/post/linux-cut-command/)
-
+- **tee command**: [tee Command](https://www.geeksforgeeks.org/tee-command-linux-example/)
